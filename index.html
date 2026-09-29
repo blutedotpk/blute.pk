@@ -260,11 +260,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         document.addEventListener('click', function (e) {
-            if (
-                !mobileMenu.contains(e.target) &&
-                !mobileMenuBtn.contains(e.target)
-            ) {
-                mobileMenu.classList.add('hidden');
+            if (window.innerWidth <= 1023) {
+                if (
+                    !mobileMenu.contains(e.target) &&
+                    !mobileMenuBtn.contains(e.target)
+                ) {
+                    mobileMenu.classList.add('hidden');
+                }
             }
         });
 
@@ -277,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -346,7 +347,7 @@ window.addEventListener('scroll', function () {
     </div>
 </div>
 
-<div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-full w-[150px] glass-panel border-t border-luxury-champagne/20 px-4 py-4 space-y-2 shadow-xl">
+<div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-full w-[135px] glass-panel border-t border-luxury-champagne/20 px-4 py-4 space-y-2 shadow-xl">
     <a href="#hero" class="block text-[11px] tracking-widest text-luxury-darkbrown uppercase font-medium mobile-link">Home</a>
     <a href="#categories" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Categories</a>
     <a href="#products" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Collection</a>
