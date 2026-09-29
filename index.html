@@ -147,7 +147,7 @@
     /* Mobile Header */
     #site-header {
         min-height: 95px;
-        overflow: hidden;
+        overflow: visible;
     }
 
 #site-header video {
@@ -211,10 +211,10 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-24 py-2 flex items-center justify-center lg:justify-between relative z-10">
     <button id="mobile-menu-btn"
-        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-        class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none cursor-pointer">
-        <i class="fa-solid fa-bars"></i>
-    </button>
+    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+    class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none cursor-pointer">
+    <i class="fa-solid fa-bars"></i>
+</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -324,7 +324,7 @@ window.addEventListener('scroll', function () {
 </div>
 
 </div>
-        <div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-full w-[220px] glass-panel border-t border-luxury-champagne/20 px-6 py-6 space-y-4 shadow-xl">
+        <div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-full w-[220px] glass-panel border-t border-luxury-champagne/20 px-6 py-6 space-y-4 shadow-xl z-[10000]">
             <a href="#hero" class="block text-sm tracking-widest text-luxury-darkbrown uppercase font-medium mobile-link">Home</a>
             <a href="#categories" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Categories</a>
             <a href="#products" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Collection</a>
