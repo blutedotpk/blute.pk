@@ -210,9 +210,11 @@
 </video>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-24 py-2 flex items-center justify-center lg:justify-between relative z-10">
-            <button id="mobile-menu-btn" class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none">
-    <i class="fa-solid fa-bars"></i>
-</button>
+    <button id="mobile-menu-btn"
+        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none cursor-pointer">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
