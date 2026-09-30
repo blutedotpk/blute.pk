@@ -147,16 +147,21 @@
     /* Mobile Header */
     #site-header {
         min-height: 95px;
-        overflow: hidden;
+        overflow: visible;
     }
 
+@media (max-width: 1023px) {
+
     #site-header video {
-        width: 100%;
-        height: 100%;
+        width: 150%;
+        height: 119%;
         object-fit: cover;
-        transform: none;
+        transform: translateX(-0.1%);
         opacity: 0.8;
+        clip-path: inset(0 0 17% 0);
     }
+
+}
 
     #site-header img[alt="BLUTE"] {
         width: 130px;
@@ -179,9 +184,19 @@
 }
 
 #site-header.scrolled {
-    border-bottom: 1px solid #c5a059;
+    border-bottom: 1.5px solid #c5a059;
 }
+@media (max-width: 1023px) {
+    #mobile-menu-btn {
+        z-index: 9999 !important;
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
 
+    #mobile-menu {
+        z-index: 9998 !important;
+    }
+}
     </style>
 </head>
 <body class="bg-luxury-white text-luxury-charcoal antialiased selection:bg-luxury-champagne selection:text-white">
@@ -194,21 +209,17 @@
 <!-- Header / Navigation -->
 <header id="site-header" class="sticky top-0 z-50 glass-header transition-all duration-300 shadow-sm relative">
 
-<!-- Desktop / Computer -->
 <video autoplay muted loop playsinline
-    class="hidden lg:block absolute inset-0 w-full h-full object-cover z-[5] opacity-70 pointer-events-none">
-    <source src="Pattiyan_pc_video.mp4" type="video/mp4">
-</video>
-
-<!-- Mobile -->
-<video autoplay muted loop playsinline
-    class="lg:hidden absolute inset-0 w-full h-full object-cover z-[5] opacity-70 pointer-events-none">
+    class="absolute inset-0 w-full h-full object-cover z-[5] opacity-70 pointer-events-none">
     <source src="Pattiyan_10_sec_1920x540.mp4" type="video/mp4">
 </video>
+
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-24 py-2 flex items-center justify-center lg:justify-between relative z-10">
-            <button id="mobile-menu-btn" class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none">
-    <i class="fa-solid fa-bars"></i>
-</button>
+    <button id="mobile-menu-btn"
+        
+        class="lg:hidden absolute right-2 -top-1 z-[100] text-luxury-darkbrown text-xl p-2 focus:outline-none cursor-pointer">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -242,13 +253,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function () {
+
+        mobileMenuBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
             mobileMenu.classList.toggle('hidden');
         });
+
+        document.addEventListener('click', function (e) {
+            if (window.innerWidth <= 1023) {
+                if (
+                    !mobileMenu.contains(e.target) &&
+                    !mobileMenuBtn.contains(e.target)
+                ) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+
+        mobileMenu.querySelectorAll('.mobile-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
     }
 });
 </script>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -276,7 +306,7 @@ window.addEventListener('scroll', function () {
 });
 </script>
 
-            <a href="#" class="flex flex-col items-center lg:items-start group leading-none py-1 lg:-translate-x-[20mm] relative z-10">
+            <a href="#" class="flex flex-col items-center lg:items-start group leading-none py-1 lg:-translate-x-[1mm] relative z-10">
                 <img src="blute_logo.png" alt="BLUTE" class="w-[144px] sm:w-[169px] h-auto object-contain" />
                 <span class="mt-1.5 translate-x-[0.1mm] lg:translate-x-[1.5mm] text-[10.5px] sm:text-[11px] tracking-[0.22em] text-luxury-mutedgray uppercase font-sans font-bold whitespace-nowrap">PRECISION <span class="text-luxury-champagne text-[120%]">•</span> RARE <span class="text-luxury-champagne text-[120%]">•</span> EXQUISITE</span>
             </a>
@@ -289,7 +319,7 @@ window.addEventListener('scroll', function () {
     <a href="#contact" class="nav-link text-luxury-darkbrown hover:text-luxury-champagne transition-all duration-300 hover:scale-[1.2] origin-center text-[110%]">Contact</a>
 </nav>
 
-<div class="flex items-center space-x-4 lg:translate-x-[20mm]">
+<div class="hidden lg:flex items-center space-x-4 lg:translate-x-[1mm]">
     <!-- Order Now aur WhatsApp Button -->
     <div class="flex flex-col items-center">
         <a href="#products" class="order-now-move text-luxury-champagne font-bold text-[11px] sm:text-[13.2px] tracking-wider mb-2">
@@ -304,7 +334,7 @@ window.addEventListener('scroll', function () {
     </div>
 
     <!-- 3 Social Icons (Moved further right & 15% scale on hover) -->
-    <div class="flex flex-col space-y-2 ml-12 sm:ml-20 translate-x-12 sm:translate-x-20">
+    <div class="flex flex-col space-y-2 ml-6 sm:ml-10 translate-x-2 sm:translate-x-4">
         <a href="#" target="_blank" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white hover:bg-[#D4AF37] shadow-md flex items-center justify-center hover:scale-[1.15] transition-all p-[1px]">
             <img src="FB.jpg" alt="Facebook" class="w-full h-full object-cover rounded-full">
         </a>
@@ -317,14 +347,13 @@ window.addEventListener('scroll', function () {
     </div>
 </div>
 
+<div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-10 w-[135px] glass-panel border-t border-luxury-champagne/20 px-4 py-4 space-y-2">
+    <a href="#hero" class="block text-[11px] tracking-widest text-luxury-darkbrown uppercase font-medium mobile-link">Home</a>
+    <a href="#categories" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Categories</a>
+    <a href="#products" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Collection</a>
+    <a href="#about" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Our Story</a>
+    <a href="#contact" class="block text-[11px] tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Contact</a>
 </div>
-        <div id="mobile-menu" class="hidden lg:hidden absolute right-0 top-full w-[220px] glass-panel border-t border-luxury-champagne/20 px-6 py-6 space-y-4 shadow-xl">
-            <a href="#hero" class="block text-sm tracking-widest text-luxury-darkbrown uppercase font-medium mobile-link">Home</a>
-            <a href="#categories" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Categories</a>
-            <a href="#products" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Collection</a>
-            <a href="#about" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Our Story</a>
-            <a href="#contact" class="block text-sm tracking-widest text-luxury-mutedgray uppercase font-medium mobile-link">Contact</a>
-        </div>
     </header>
 
     <!-- HERO SECTION WITH 3 CAROUSEL BANNERS -->
